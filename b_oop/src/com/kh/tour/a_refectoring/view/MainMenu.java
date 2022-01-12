@@ -1,8 +1,8 @@
-package com.kh.tour__refectoring.view;
+package com.kh.tour.a_refectoring.view;
 
 import java.util.Scanner;
 
-import com.kh.tour__refectoring.controller.TourController;
+import com.kh.tour.a_refectoring.controller.TourController;
 
 public class MainMenu {
 	

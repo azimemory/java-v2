@@ -1,4 +1,4 @@
-package com.kh.tour__refectoring.model.vo;
+package com.kh.tour.a_refectoring.model.vo;
 
 public class Tourist {
 	

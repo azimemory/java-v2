@@ -1,4 +1,4 @@
-package com.kh.z3_coffeemanager_decoration;
+package com.kh.z_coffeemanager.decoration;
 
 import java.util.Calendar;
 

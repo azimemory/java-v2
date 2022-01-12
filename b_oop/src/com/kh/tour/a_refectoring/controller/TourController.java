@@ -1,7 +1,7 @@
-package com.kh.tour__refectoring.controller;
+package com.kh.tour.a_refectoring.controller;
 
-import com.kh.tour__refectoring.model.vo.Airline;
-import com.kh.tour__refectoring.model.vo.Tourist;
+import com.kh.tour.a_refectoring.model.vo.Airline;
+import com.kh.tour.a_refectoring.model.vo.Tourist;
 
 public class TourController {
 	
