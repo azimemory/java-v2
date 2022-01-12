@@ -5,14 +5,18 @@ import java.util.Scanner;
 public class B_looping {
 	
 	public static void main(String[] args) {
-		q3();
+		q5();
 	}
 	
-	// 사용자로부터 줄 수와 칸수를 입력받아서
-	// 사각형을 별로 그리는 이중반복문 작성하시오
-	// System.out.print()
-	// System.out.println()
-	// 차이를 잘 생각하시면 쉽게 해결할 수 있습니다.
+//	사용자로부터 줄 수와 칸수를 입력받아서
+// 	사각형을 별로 그리는 이중반복문 작성하시오
+	
+// 	출력예시
+//		줄 수 : 3
+//		칸 수 : 4
+//		****
+//		****
+//		****
 	private static void q1() {
 
 		Scanner sc = new Scanner(System.in);
@@ -33,15 +37,19 @@ public class B_looping {
 			}
 			// 안쪽 for문이 종료되면 줄바꿈 처리를 해준다.
 			System.out.println();
-			System.out.println();
-			System.out.println();
-			
 		}
 	}
 
-	// 사용자로부터 정수를 하나 입력받아
-	// 사각형을 별로 그리는 데, 대각선에는 숫자를 출력하시오
-	// 숫자는 1~사용자가 입력한 숫자까지.
+//	 사용자로부터 정수를 하나 입력받아
+//	 사각형을 별로 그리는 데, 대각선에는 숫자를 출력하시오
+//	 숫자는 1~사용자가 입력한 숫자까지.
+
+//	출력 예시
+//		숫자 : 4
+//		1***
+//		*2**
+//		**3*
+//		***4
 	private static void q2() {
 		// 사용자로부터 정수를 하나 입력받는다.
 		Scanner sc = new Scanner(System.in);
@@ -88,7 +96,18 @@ public class B_looping {
 		}
 	}
 
-	private static void printStar() {
+	
+//	사용자로부터 숫자와 방향(+,-) 를 입력받아
+//	사용자가 입력한 방향에 따라 삼각형 밑변의 위치를 다르게 출력하시오.
+//	
+//	출력예시
+//		숫자 : 4
+//		방향(+ 또는 -) : -
+//		****
+//		***
+//		**
+//		*
+	private static void q4() {
 		// 사용자로 부터 정수를 하나 입력받는다.
 		Scanner sc = new Scanner(System.in);
 		System.out.print("숫자 : ");
@@ -113,49 +132,20 @@ public class B_looping {
 		}
 	}
 	
-	private static void printDiamond() {
-		// 사용자로 부터 정수를 하나 입력받는다.
-		Scanner sc = new Scanner(System.in);
-		System.out.print("숫자 : ");
-		int cnt = sc.nextInt();
-		
-		//전체 다이아몬드의 라인수 : cnt * 2 - 1
-		
-		//삼각형
-		//라인수 : cnt
-		//n번째 줄의 공백 개수 : cnt-n 
-		//n번째 줄의 별 개수 : 2n-1개
-		
-		//역삼각형
-		//라인수 : cnt-1
-		//n번째 줄의 공백 개수 : n
-		//n번째 줄의 별 개수 : (cnt * 2 -1) - 2n
-		
-		for(int i = 0; i < cnt; i++)  {
-			int line = i+1;
-			
-			for(int j = 0; j < (cnt-line); j++){
-	           System.out.print(" ");
-	        }
-	        
-	        for(int k = 0; k < 2*line-1; k++){
-	        	System.out.print("*");
-	        }
-	        System.out.println();
-	    }
-		
-		for(int i = 0; i < cnt-1; i++)  {
-			int line = i+1;
-	        
-			for(int j = 0; j < line; j++){
-	           System.out.print(" ");
-	        }
-	        
-	        for(int k = 0; k < (cnt * 2 -1) - line*2; k++){
-	        	System.out.print("*");
-	        }
-	        System.out.println();
-	    }
+//	사용자로부터 숫자를 입력 받아 해당 숫자를  한 변의 길이로 가지는 마름모를 출력하시오.
+
+//	출력예시
+//	숫자 : 5
+//	    *
+//	   ***
+//	  *****
+//	 *******
+//	*********
+//	 *******
+//	  *****
+//	   ***
+//	    *
+	private static void q5() {
 		
 	}
 }
