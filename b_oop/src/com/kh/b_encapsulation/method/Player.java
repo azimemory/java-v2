@@ -6,7 +6,6 @@ public class Player {
 	
 	//객체는 자율성을 지녀야 한다.
 	//캡슐화 : 외부에서 직접 접근하는 것을 막는 것.
-	
 	public void startPlay() {
 		prepare();
 		//start();

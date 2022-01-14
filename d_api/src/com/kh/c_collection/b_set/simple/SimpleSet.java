@@ -2,21 +2,26 @@ package com.kh.c_collection.b_set.simple;
 
 import java.util.Iterator;
 
-public class SimpleSet<E> implements Iterable<E>{
+import com.kh.c_collection.a_list.simple.SimpleList;
+import com.kh.c_collection.common.Simple;
+
+public class SimpleSet<E> implements Simple<SimpleList<E>>,Iterable<E>{
 	
 	//배열의 초기크기
 	private int arraySize = 17;
-	private Object[] simpleSet;
+	private SimpleList<E>[] simpleSet;
+	private SimpleList<E> allElements = new SimpleList<>(); //모든 요소를 저장하는 리스트
+	
 	//배열안에 들어간 요소들 개수
 	private int size = 0;
 	
+	@SuppressWarnings("unchecked")
 	public SimpleSet() {
-		simpleSet = new Object[arraySize];
+		simpleSet = new SimpleList[arraySize];
 	}
 	
-	public SimpleSet(int arraySize) {
-		this.arraySize = arraySize;
-		simpleSet = new Object[arraySize];
+	public int size() {
+		return allElements.size();
 	}
 	
 	//해쉬함수 작성
@@ -40,63 +45,60 @@ public class SimpleSet<E> implements Iterable<E>{
 	}
 	
 	public void add(E data) {
+		int index = simpleHashMethod(data); //해쉬함수를 통해 저장할 인덱스 결정
 		
 		if(size < arraySize) {
-			//배열의 몇번 인덱스에 data를 저장할지 결정
-			int index = simpleHashMethod(data);
-			if(simpleSet[index] == null) {
-				simpleSet[index] = data;
-				size++;
-			}
+			add(data, index);
 		}else {
-			//배열의 크기를 두배로 확장
-			arraySize *= 2;			
-			Object[] tempArr = new Object[arraySize];
-			
-			for(int i = 0; i < simpleSet.length; i++) {	
-				//확장한 크기로 인덱스를 구한다.
-				int index = simpleHashMethod((E)simpleSet[i]);
-				tempArr[index] = simpleSet[i];
-			}
-			
-			//simpleSet의 레퍼런스에 두배 확장한 배열을 옮겨담고
-			simpleSet = tempArr;
-			
-			int index = simpleHashMethod(data);
-			
-			//만약 배열의 값이 null일 때만
-			if(simpleSet[index] == null) {
-				//데이터를 추가하고
-				simpleSet[index] = data;
-				//배열의 크기를 1 증가
-				size++;
-			}
+			arraySize *= 2;
+			simpleSet = extendsArray(simpleSet,arraySize);
+			add(data, index);
 		}
+	}
+
+	private void add(E data, int index) {
+		if(simpleSet[index] == null) {
+			SimpleList<E> datas = new SimpleList<E>();
+			simpleSet[index] = datas;
+		}
+		
+		if(simpleSet[index].contains(data)) return;
+		
+		simpleSet[index].add(data);
+		allElements.add(data);	
+		size++; 
+	}
+	
+	//5. contains
+	public boolean contains(E e) {
+		return allElements.contains(e);
 	}
 	
 	public E remove(E data) {
-		//해당 data가 몇번 인덱스에 있는 지 확인
-		int index = simpleHashMethod(data);
-		//삭제 될 값을 미리 저장
-		E res = (E) simpleSet[index];
-		//삭제
-		simpleSet[index] = null;
+
+		int index = simpleHashMethod(data); //해당 data가 몇번 인덱스에 있는 지 확인
+		SimpleList<E> es = simpleSet[index];
 		
+		if(es == null || !es.contains(data)) throw new IllegalArgumentException();
+		
+		int innerIdx = es.indexOf(data);
+		E res = es.get(innerIdx); 	//삭제 될 값을 미리 저장
+		
+		es.remove(innerIdx);		//삭제
+		allElements.remove(allElements.indexOf(data)); //전체 목록에서 삭제
 		return res;
 	}
 	
 	@Override
 	public Iterator<E> iterator() {		
 		return new Iterator<E>() {
-			
+
 			//Iterator로 반환한 요소의 개수
 			private int iterIdx;
-			//Object[]안에서 실제로 탐색한 인덱스
-			private int setIdx;
 			
 			@Override
 			public boolean hasNext() {
-				if(iterIdx < size-1) {
+				if(iterIdx < size()) {
 					return true;
 				}
 				return false;
@@ -104,18 +106,8 @@ public class SimpleSet<E> implements Iterable<E>{
 
 			@Override
 			public E next() {
-				//null이 아닌 데이터를 탐색
-				while(simpleSet[setIdx] == null) {
-					setIdx++;
-				}
-				
-				//setIdx에 있는 데이터를 반환
-				E res = (E)simpleSet[setIdx];
-				//데이터가 있는 인덱스의 다음 인덱스가 되게끔 1 증가
-				setIdx++;
-				//반환한 개수 증가
+				E res = allElements.get(iterIdx);
 				iterIdx++;
-				
 				return res;
 			}
 		};
@@ -139,3 +131,11 @@ public class SimpleSet<E> implements Iterable<E>{
 	
 
 }
+	
+	
+	
+	
+	
+	
+	
+

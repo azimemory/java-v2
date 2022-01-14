@@ -15,12 +15,13 @@ public interface BatteryDetachable {
 	void attacheBattery();
 	
 	//default메서드가 자바 1.8에서 도입된다.
-	//인터페이스 내에서 메서드 바디를 가지고 있는 메서드.
+	//인터페이스 내에서 구현부를 가진 메서드
 	default void info() {
 		System.out.println("인스턴스를 통해서만 호출이 가능합니다.");
 		System.out.println(ABOUT_INFO);
 	}
 	
+	//타입으로 접근하는 static 메서드
 	static void information() {
 		System.out.println("인터페이스 타입만을 통해서도 호출이 가능합니다.");
 		System.out.println(ABOUT_INFO);

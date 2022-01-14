@@ -87,6 +87,7 @@ public class SimpleLinkedList<E> implements Iterable<E>{
 			//삭제 될 데이터를 미리 res에 저장
 			//moveLink는 삭제할 데이터의 앞 노드. moveLink의 다음 노드의 데이터를 res에 저장
 			res = moveLink.getLink().getData();
+			
 			//moveLink의 다다음 노드를 moveLink의 link에 저장
 			//이렇게 되면 moveLink의 다음 노드인 삭제 대상 노드는 더이상 그 노드를 참조하는 레퍼런스가 없게 되며
 			//가비지컬렉터에의해 메모리에서 삭제되게 된다.

@@ -1,8 +1,7 @@
 package com.kh.c_collection.b_set.simple;
 
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Set;
 
 import com.kh.c_collection.model.vo.Music;
 
@@ -22,16 +21,17 @@ public class Run {
 			System.out.println(music);
 		}
 		
-		System.out.println("///////////////////////////////////////");
+		System.out.println("===================== 김경호 노래 삭제 해보자 =====================");
 		
-		Iterator<Music> iterator = set.iterator();
-		while(iterator.hasNext()) {
-			System.out.println(iterator.next());
+//		Iterator<Music> iterator = set.iterator();
+//		while(iterator.hasNext()) {
+//			System.out.println(iterator.next());
+//		}
+		
+		set.remove(new Music("김경호","와인"));
+		for (Music music : set) {
+			System.out.println(music);
 		}
-		
-		
-		
-		
 		
 		
 		
